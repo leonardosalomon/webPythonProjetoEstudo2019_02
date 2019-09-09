@@ -3,7 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block menu %}
-<li><a href="{{ url_for('common_bp.common_requests') }}">Seus Pedidos<span class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
+<form id="menuClientes" action="{{ url_for('bp_common.common_requests') }}" method="POST">
+    <li><a href="javascript:;" onclick="document.getElementById('menuClientes').submit();">
+    Clientes<span class="sub_icon fa fa-home fa-2x"></span></a></li>
+    </form>
+
 {% endblock %}
 {% block content %}
 <h1>Home</h1>
