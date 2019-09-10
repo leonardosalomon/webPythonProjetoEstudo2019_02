@@ -5,11 +5,44 @@
 {% block menu %}
 <li><a href="{{ url_for('bp_admin.admin_providers') }}">Fornecedores<span class="sub_icon fa fa-hand-holding-usd fa-2x"></dpan></a></li>
 <li><a href="{{ url_for('bp_admin.admin_your_requests') }}">Seus Pedidos<span class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_requests') }}">Pedidos<span class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_products') }}">Produtos<span class="sub_icon fa fa-box-open fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_users') }}">Usuários<span class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_requests') }}">Pedidos<span class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_products') }}">Produtos<span class="sub_icon fa fa-box-open fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_users') }}">Usuários<span class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
 {% endblock %}
 {% block content %}
-<h1>ADMIN</h1>
-<p>PRODUTOS</p>
+<form>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputID">Código:</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID Produto" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputDesc">Descrição:</label>
+            <input type="text" class="form-control" id="inputDesc" placeholder="Descrição do Produto">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputValue">Valor:</label>
+            <input type="text" class="form-control" id="inputValue">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputDesc">Imagem:</label>
+            <input type="file" class="form-control" id="inputDesc">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-secondary" style="width: 100%"><span class="fas fa-save"> Salvar</span></button>
+          </div>
+          <div class="col-md-6">
+              <button type="submit" class="btn btn-danger" style="width: 100%"><span class="far fa-trash-alt"> Excluir</span></button>
+            </div>
+        </div>
+      </form>
 {% endblock %}

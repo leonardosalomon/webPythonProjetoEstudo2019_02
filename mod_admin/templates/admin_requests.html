@@ -3,13 +3,141 @@
 {% block title %}Admin - Pedidos{% endblock %}
 
 {% block menu %}
-<li><a href="{{ url_for('bp_admin.admin_providers') }}">Fornecedores<span class="sub_icon fa fa-hand-holding-usd fa-2x"></dpan></a></li>
-<li><a href="{{ url_for('bp_admin.admin_your_requests') }}">Seus Pedidos<span class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_requests') }}">Pedidos<span class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_products') }}">Produtos<span class="sub_icon fa fa-box-open fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_users') }}">Usuários<span class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_providers') }}">Fornecedores<span class="sub_icon fa fa-hand-holding-usd fa-2x">
+            </dpan></a></li>
+<li><a href="{{ url_for('bp_admin.admin_your_requests') }}">Seus Pedidos<span
+            class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_requests') }}">Pedidos<span
+            class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_products') }}">Produtos<span
+            class="sub_icon fa fa-box-open fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_users') }}">Usuários<span
+            class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
 {% endblock %}
 {% block content %}
-<h1>ADMIN</h1>
-<p>PEDIDOS</p>
+<h3>PEDIDOS</h3>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputIDRequest">Pedido:</label>
+            <input type="text" class="form-control" id="inputIDRequest" placeholder="ID Pedido" readonly>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputTel">Telefone:</label>
+            <input type="text" class="form-control" id="inputTel" placeholder="Número de Telefone">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputIDRequester">ID Cliente:</label>
+            <input type="text" class="form-control" id="inputIDRequester" placeholder="ID Cliente" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName">Nome Cliente:</label>
+            <input type="text" class="form-control" id="inputName">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputAddress">Endereço:</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Nome da Rua">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputNumber">Número:</label>
+            <input type="text" class="form-control" id="inputNumber">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputCEP">CEP:</label>
+            <input type="text" class="form-control" id="inputCEP" placeholder="000000-000">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputNeighborhood">Bairro:</label>
+            <input type="text" class="form-control" id="inputNeighborhood" placeholder="Ex: Coral">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputCity">Cidade:</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Ex: Lages">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputObs">Obs:</label>
+            <input type="text" class="form-control" id="inputObs" placeholder="Digite aqui sua observação">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputDatetime">Data/Hora:</label>
+            <input type="datetime-local" class="form-control" id="inputDatetime">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputIDProduct">Produto:</label>
+            <input type="text" class="form-control" id="inputIDProduct" placeholder="Código">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputDesc">Descrição:</label>
+            <input type="text" class="form-control" id="inputDesc">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputPrice">Preço:</label>
+            <input type="text" class="form-control" id="inputPrice" placeholder="R$">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputQtd">Quantidade:</label>
+            <input type="number" class="form-control" id="inputQtd">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-secondary" style="width: 100%"><span class="fas fa-save">
+                    Adicionar</span></button>
+        </div>
+    </div>
+    <div class="col-md-12">
+            <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Caneta</td>
+                            <td>2.00</td>
+                            <td></td>
+                            <td><i class="fas fa-eye"></i></td>
+                            <td><i class="fas fa-edit"></i></td>
+                            <td><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Caneta</td>
+                            <td>2.00</td>
+                            <td></td>
+                            <td><i class="fas fa-eye"></i></td>
+                            <td><i class="fas fa-edit"></i></td>
+                            <td><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Caneta</td>
+                            <td>2.00</td>
+                            <td></td>
+                            <td><i class="fas fa-eye"></i></td>
+                            <td><i class="fas fa-edit"></i></td>
+                            <td><i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+</form>
 {% endblock %}

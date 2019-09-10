@@ -1,0 +1,65 @@
+{% extends "modelo.html" %}
+
+{% block title %}Admin - Produtos{% endblock %}
+
+{% block menu %}
+<li><a href="{{ url_for('bp_admin.admin_providers') }}">Fornecedores<span class="sub_icon fa fa-hand-holding-usd fa-2x">
+            </dpan></a></li>
+<li><a href="{{ url_for('bp_admin.admin_your_requests') }}">Seus Pedidos<span
+            class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_requests') }}">Pedidos<span
+            class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_products') }}">Produtos<span
+            class="sub_icon fa fa-box-open fa-2x"></span></a></li>
+<li><a href="{{ url_for('bp_admin.admin_list_users') }}">Usuários<span
+            class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
+{% endblock %}
+{% block content %}
+<h1>ADMIN</h1>
+<p>PRODUTOS</p>
+<button type="button" class="btn btn-success"
+    onclick="window.location.href='{{ url_for('bp_admin.admin_edit_products') }}'"><span
+        class="fas fa-plus-circle"></span> Novo Usuário</button>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Imagem</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Caneta</td>
+            <td>2.00</td>
+            <td></td>
+            <td><i class="fas fa-eye"></i></td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>Caneta</td>
+            <td>2.00</td>
+            <td></td>
+            <td><i class="fas fa-eye"></i></td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td>Caneta</td>
+            <td>2.00</td>
+            <td></td>
+            <td><i class="fas fa-eye"></i></td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

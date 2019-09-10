@@ -3,13 +3,13 @@
 {% block title %}Seus Pedidos{% endblock %}
 
 {% block menu %}
-<form id="menuClientes" action="{{ url_for('bp_common.common_index') }}" method="GET">
+<form id="menuClientes" action="{{ url_for('bp_common.common_index') }}" method="POST">
     <li><a href="javascript:;" onclick="document.getElementById('menuClientes').submit();">
             Home<span class="sub_icon fa fa-home fa-2x"></span></a></li>
-</form>
-<form id="menuClientes" action="{{ url_for('bp_common.common_requests') }}" method="POST">
     <li><a href="javascript:;" onclick="document.getElementById('menuClientes').submit();">
             Seus pedidos<span class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
+</form>
+
 </form>
 {% endblock %}
 {% block content %}
