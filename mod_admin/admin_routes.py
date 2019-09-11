@@ -1,7 +1,7 @@
 #coding: utf-8
 from flask import Blueprint, render_template
 
-bp_admin = Blueprint('bp_admin', __name__, url_prefix='/admin', template_folder='templates', static_folder='static')
+bp_admin = Blueprint('bp_admin', __name__, url_prefix='/admin', template_folder='templates')
 
 @bp_admin.route('/lista-pedidos') 
 def admin_list_requests():

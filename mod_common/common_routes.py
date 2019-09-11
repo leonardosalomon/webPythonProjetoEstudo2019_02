@@ -1,7 +1,7 @@
 #coding: utf-8
 from flask import Blueprint, render_template
 
-bp_common = Blueprint('bp_common', __name__, url_prefix='/', template_folder='templates', static_folder='static')
+bp_common = Blueprint('bp_common', __name__, url_prefix='/common', template_folder='templates')
 
 @bp_common.route('/')
 def common_index():
