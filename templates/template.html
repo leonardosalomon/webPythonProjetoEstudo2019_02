@@ -3,46 +3,32 @@
 
 <head>
     {% block head %}
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %} - Warehouse</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block pagestyles %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
     {% endblock %}
 </head>
 
 <body>
-    <div class="header"></div>
-    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-    <label for="openSidebarMenu" class="sidebarIconToggle">
-        <div class="spinner diagonal part-1"></div>
-        <div class="spinner horizontal"></div>
-        <div class="spinner diagonal part-2"></div>
-    </label>
-
-    <div id="sidebarMenu">
-        <ul class="sidebarMenuInner">
-            {% block menu %}
-            {% endblock %}
-        </ul>
-    </div>
-   
-    <div class="content">
     {% block content %}
-
-
     {% endblock %}
-    </div>
 
     {% block footer %}
-
+    <!--&copy; Copyright 2019 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>.-->
     {% endblock %}
+
+    
 </body>
 
 </html>

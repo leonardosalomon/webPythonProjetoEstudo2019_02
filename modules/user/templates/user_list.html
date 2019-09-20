@@ -1,19 +1,13 @@
-{% extends "modelo.html" %}
-
-{% block title %}Admin - Usuários{% endblock %}
-
-{% block menu %}
-<li><a href="{{ url_for('bp_admin.admin_providers') }}">Fornecedores<span class="sub_icon fa fa-hand-holding-usd fa-2x"></dpan></a></li>
-<li><a href="{{ url_for('bp_admin.admin_your_requests') }}">Seus Pedidos<span class="sub_icon fa fa-clipboard-list fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_list_requests') }}">Pedidos<span class="sub_icon fa fa-envelope-open-text fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_list_products') }}">Produtos<span class="sub_icon fa fa-box-open fa-2x"></span></a></li>
-<li><a href="{{ url_for('bp_admin.admin_list_users') }}">Usuários<span class="sub_icon fa fa-user-friends fa-2x"></span></a></li>
-{% endblock %}
+{% extends "template.html" %}
+{% block title %}User{% endblock %}
+{% include 'menu.html' %}
 {% block content %}
-<h1>ADMIN</h1>
-<p>USUÁRIOS</p>
-<button type="button" class="btn btn-success" onclick="window.location.href='{{ url_for('bp_admin.admin_edit_users') }}'"><span class="fas fa-plus-circle"></span> Novo Usuário</button>
-<table class="table">
+<div class="content">
+  <h2>Usuários</h2>
+  <button type="button" class="btn btn-success"
+    onclick="window.location.href='{{ url_for('bp_user.user_edit') }}'"><span class="fas fa-plus-circle"></span>
+    Novo Usuário</button>
+  <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -83,4 +77,5 @@
       </tr>
     </tbody>
   </table>
+</div>
 {% endblock %}

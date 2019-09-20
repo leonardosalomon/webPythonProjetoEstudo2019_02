@@ -1,0 +1,109 @@
+{% extends "template.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block pagestyles %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+        border: 3px solid #f1f1f1;
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    .content {
+        width: 450px;
+        margin: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <form action="" method="POST" class="login">
+        {{ form.hidden_tag() }}
+        <div class="imgcontainer">
+            <i class="fas fa-user fa-7x"></i>
+            <!--<img src="img_avatar2.png" alt="Avatar" class="avatar">-->
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Usuário</b></label>
+            <!--<input type="text" placeholder="Usuário" name="uname" required>-->
+            {{ form.username }}
+
+            <label for="psw"><b>Senha</b></label>
+            <!--<input type="password" placeholder="Senha" name="psw" required>-->
+            {{ form.password }}
+
+            <p>
+                <!--Verifica se deu erro no formulário do Login-->
+                {% with messages = get_flashed_messages(error) %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+
+                <!--Verifica se deu falha na sessão para mostrar msg no Login-->
+                {% if request.args.get('falhaSessao') == '1': %}
+                <div class="row">
+                    <div class="col col-12">
+                        <div class="alert alert-danger" role="alert">
+                            Falha da Sessão! Realize seu Login!
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </p>
+
+            <button type="submit">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Lembre-me
+            </label>
+        </div>
+    </form>
+</div>
+{% endblock %}
