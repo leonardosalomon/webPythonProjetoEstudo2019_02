@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 from functools import wraps
+from database.model.UsuarioBD import Usuario
 
 bp_login = Blueprint('bp_login', __name__, url_prefix='/',
                      template_folder='templates')
@@ -31,14 +32,20 @@ def validateSession(f):
 @bp_login.route('/', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    usuario = Usuario()
+
     if form.validate_on_submit():
         '''flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
         return redirect(url_for('bp_common.common_index'))'''
         error = None
-        if form.username.data == 'abc' and form.password.data == 'Bolinhas':
+
+        usuario.selectLogin(form.username.data, form.password.data)
+
+        if usuario.id:
             session.clear()
-            session['usuario'] = form.username.data
+            session['usuario'] = usuario.nome
+            session['permissao'] = usuario.permissao
             return redirect(url_for('bp_home.home'))
         else:
             error = 'Invalid Credentials'

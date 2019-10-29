@@ -1,7 +1,7 @@
 <div class="header">
     <span>
         {% if 'usuario' in session %}
-            <h4>{{session['usuario']}}</h4>
+            <h4>{{session['usuario']}} {{session['permissao']}}</h4>
         {% endif %}
     </span>
 </div>
