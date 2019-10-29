@@ -1,0 +1,48 @@
+{% extends "template.html" %}
+{% block title %}User{% endblock %}
+{% include 'menu.html' %}
+{% block content %}
+<div class="content">
+  <h2>Usuários</h2>
+  <button type="button" class="btn btn-success"
+    onclick="window.location.href='{{ url_for('bp_user.user_create') }}'"><span class="fas fa-plus-circle"></span>
+    Novo Usuário</button>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Setor</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if users %}
+      {% for row in users %}
+      <tr>
+        <th scope="row">{{ row[0] }}</th>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[9] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[11] }}</td>
+        <td><a><i class="fas fa-eye"></i></a></td>
+        <td>
+            <input type='hidden' name='id' value='{{ row[0] }}'>
+            <a href="{{ url_for('bp_user.user_edit', id=row[0]) }}"><i class="fas fa-edit"></i></a>
+        </td>
+        <td><a href="{{ url_for('bp_user.user_delete', id=row[0]) }}"><i class="fas fa-trash-alt"></i></a></td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

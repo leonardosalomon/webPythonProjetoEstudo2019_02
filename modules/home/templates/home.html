@@ -1,0 +1,47 @@
+{% extends "template.html" %}
+{% block title %}Home {% endblock %}
+{% block menu %}
+<!--<form id="menuClientes" action="{{ url_for('bp_common.common_requests') }}" method="POST">
+    <li>
+        <a href="javascript:;" onclick="document.getElementById('menuClientes').submit();">
+            Clientes<span class="sub_icon fa fa-home fa-2x"></span></a>
+    </li>
+</form>
+<li>
+    <a href="{{ url_for('bp_login.logoff') }}">Seus Pedidos<span
+            class="sub_icon fa fa-sign-out-alt fa-2x"></span></a>
+</li>-->
+{% endblock %}
+{% include 'menu.html' %}
+{% block content %}
+<div class="content">
+    <h2>Home</h2>
+    {% if 'usuario' in session %}
+    Bem vindo <b>{{session['usuario']}}</b>
+    {% endif %}
+
+    <div id="time"></div>
+                <script>
+                    function startTimer(duration, display) {
+                        var timer = duration, minutes, seconds;
+                        var interval = setInterval(function () {
+                            minutes = parseInt(timer / 60, 10);
+                            seconds = parseInt(timer % 60, 10);
+                            minutes = minutes < 10 ? "0" + minutes : minutes;
+                            seconds = seconds < 10 ? "0" + seconds : seconds;
+                            display.textContent = minutes + ":" + seconds;
+                            if (--timer < 0) {
+                                clearInterval(interval);
+                                window.location.replace('/');
+                            }
+                        }, 1000);
+                    }
+                    window.onload = function () {
+                        var fiveMinutes = 60 * 5,
+                            display = document.querySelector('#time');
+                        startTimer(fiveMinutes, display);
+                    };
+                </script>
+            </div>
+</div>
+{% endblock %}

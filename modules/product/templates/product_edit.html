@@ -1,0 +1,96 @@
+{% extends "template.html" %}
+{% block title %}Product{% endblock %}
+
+{% include 'menu.html' %}
+{% block content %}
+<div class="content">
+  <h2>Produto</h2>
+  {% if tipo == 'create' %}
+  <form name="produto" method="POST" action="{{ url_for('bp_product.product_create') }}" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="id">Código:</label>
+        <input type="text" class="form-control" id="id" name="id" value="{{ product.id }}" placeholder="ID Produto" readonly>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ product.nome }}" placeholder="Descrição do Produto">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="unidade">Unidade:</label>
+        <select id="unidade" name="unidade" class="form-control">
+          <option selected value="">Escolher...</option>
+          <option value="Unidade">Unidade</option>
+          <option value="Caixa">Caixa</option>
+          <option value="Conjunto">Conjunto</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="imagem">Imagem:</label>
+        <input type="file" class="form-control" id="imagem" name="imagem" value="">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-secondary" style="width: 100%" name="createProductDB" id="createProductDB"><span class="fas fa-save">
+            Salvar</span></button>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-danger" style="width: 100%" name="cancelProduct" id="cancelProduct"><span class="far fa-trash-alt">
+            Cancelar</span></button>
+      </div>
+    </div>
+  </form>
+  {% elif tipo == 'edit' %}
+  <form name="produto" method="POST" action="{{ url_for('bp_product.product_edit', id=product.id) }}" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="id">Código:</label>
+        <input type="text" class="form-control" id="id" name="id" value="{{ product.id }}" placeholder="ID Produto" readonly>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{ product.nome }}" placeholder="Descrição do Produto">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="unidade">Unidade:</label>
+        <select id="unidade" name="unidade" class="form-control">
+          <option selected value="">Escolher...</option>
+          <option value="Unidade">Unidade</option>
+          <option value="Caixa">Caixa</option>
+          <option value="Conjunto">Conjunto</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="imagem">Imagem:</label>
+        <input type="file" class="form-control" id="imagem" name="imagem" value="">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-secondary" style="width: 100%" name="editProductDB" id="editProductDB"><span class="fas fa-save">
+            Editar</span></button>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-danger" style="width: 100%" name="deleteProductDB" id="deleteProductDB"><span class="far fa-trash-alt">
+            Excluir</span></button>
+      </div>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

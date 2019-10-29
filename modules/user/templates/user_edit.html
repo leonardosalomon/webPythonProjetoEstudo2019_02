@@ -1,0 +1,178 @@
+{% extends "template.html" %}
+{% block title %}User{% endblock %}
+{% include 'menu.html' %}
+{% block content %}
+<div class="content">
+  <h2>Usuários</h2>
+  {% if tipo == 'create' %}
+  <form name="usuario" method="POST" action="{{ url_for('bp_user.user_create') }}">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="id">Código:</label>
+        <input type="text" class="form-control" id="id" name="id" value="{{ user.id }}" placeholder="ID Usuário" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="nome">Nome Usuário:</label>
+        <input type="text" class="form-control" id="nome" name="nome" autofocus="" value="{{ user.nome }}" placeholder="Nome Usuário">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="cpf">CPF:</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" value="{{ user.cpf }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="data_nasc">Data Nascimento:</label>
+        <input type="text" class="form-control" id="data_nasc" name="data_nasc" value="{{ user.data_nasc }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" class="form-control">
+          <option selected>Escolher...</option>
+          <option value='M'>Masculino</option>
+          <option value='F'>Feminino</option>
+          <option value='O'>Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="telefone">Telefone:</label>
+        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ user.telefone }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="celular">Celular:</label>
+        <input type="text" class="form-control" id="celular" name="celular" value="{{ user.celular }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="senha">Senha:</label>
+        <input type="text" class="form-control" id="senha" name="senha" value="{{ user.senha }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="setor">Setor:</label>
+        <select id="setor" name="setor" class="form-control">
+          <option selected value="">Escolher...</option>
+          <option value="RH">RH</option>
+          <option value="Informatica">Informática</option>
+          <option value="Comunicacao">Comunicação</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="permissao">Permissão:</label>
+        <select id="permissao" name="permissao" class="form-control">
+          <option selected>Escolher...</option>
+          <option>Comum</option>
+          <option>Almoxarifado</option>
+          <option>Administrador</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-secondary" style="width: 100%" name="createUserDB" id="createUserDB"><span class="fas fa-save">
+            Salvar</span></button>
+      </div>
+    </div>
+  </form>
+  
+  {% elif tipo == 'edit' %}
+  <form name="usuario" method="POST" action="{{ url_for('bp_user.user_edit', id=user.id) }}">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="id">Código:</label>
+        <input type="text" class="form-control" id="id" name="id" value="{{ user.id }}" placeholder="ID Usuário" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="nome">Nome Usuário:</label>
+        <input type="text" class="form-control" id="nome" name="nome" autofocus="" value="{{ user.nome }}" placeholder="Nome Usuário">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="cpf">CPF:</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" value="{{ user.cpf }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="data_nasc">Data Nascimento:</label>
+        <input type="text" class="form-control" id="data_nasc" name="data_nasc" value="{{ user.data_nasc }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" class="form-control">
+          <option selected value="">Escolher...</option>
+          <option {{ 'selected' if sexo == 'M' else '' }} value='M'>Masculino</option>
+          <option {{ 'selected' if sexo == 'F' else '' }} value='F'>Feminino</option>
+          <option {{ 'selected' if sexo == 'O' else '' }} value='O'>Outro</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="telefone">Telefone:</label>
+        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ user.telefone }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="celular">Celular:</label>
+        <input type="text" class="form-control" id="celular" name="celular" value="{{ user.celular }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="senha">Senha:</label>
+        <input type="text" class="form-control" id="senha" name="senha" value="{{ user.senha }}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="setor">Setor:</label>
+        <select id="setor" name="setor" class="form-control">
+          <option selected value="">Escolher...</option>
+          <option value="RH">RH</option>
+          <option value="Informatica">Informática</option>
+          <option value="Comunicacao">Comunicação</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="permissao">Permissão:</label>
+        <select id="permissao" name="permissao" class="form-control">
+          <option selected>Escolher...</option>
+          <option {{ 'selected' if permissao == 'Comum' else '' }} value='Comum'>Comum</option>
+          <option {{ 'selected' if permissao == 'Almoxarifado' else '' }} value='Almoxarifado'>Almoxarifado</option>
+          <option {{ 'selected' if permissao == 'Administrador' else '' }} value='Administrador'>Administrador</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-secondary" style="width: 100%" name="editUserDB" id="editUserDB"><span class="fas fa-save">
+          Editar</span></button>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-danger" style="width: 100%" name="excluiClienteDB" id="excluiClienteDB"><span class="far fa-trash-alt">
+            Excluir</span></button>
+      </div>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
