@@ -2,131 +2,193 @@
 {% block title %}Request{% endblock %}
 {% include 'menu.html' %}
 {% block content %}
+{% if tipo == 'Create' %}
 <div class="content">
     <h2>Pedidos</h2>
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="inputIDRequest">Pedido:</label>
-                <input type="text" class="form-control" id="inputIDRequest" placeholder="ID Pedido" readonly>
+    <form name="pedido" method="POST" action="{{ url_for('bp_request.request_create') }}" enctype="multipart/form-data">
+        <div class="form-group row">
+            <div class="form-group col-md-3">
+                <label>Produto:</label>
+                <select id="produto" name="produto" class="form-control">
+                    <option selected value="">Escolher...</option>
+                    {% if products %}
+                    {% for product in products%}
+                    <option value="{{product[0]}}">{{product[1]}}</option>
+                    {% endfor %}
+                    {% endif %}
+                </select>
             </div>
-            <div class="form-group col-md-4">
-                <label for="inputTel">Telefone:</label>
-                <input type="text" class="form-control" id="inputTel" placeholder="Número de Telefone">
+            <div class="form-group col-md-3">
+                <label>Quantidade:</label>
+                <input type="number" class="form-control" id="quant" name="quant" placeholder="Quantidade">
             </div>
-            <div class="form-group col-md-4">
-                <label for="inputIDRequester">ID Cliente:</label>
-                <input type="text" class="form-control" id="inputIDRequester" placeholder="ID Cliente" readonly>
-            </div>
+            
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="inputName">Nome Cliente:</label>
-                <input type="text" class="form-control" id="inputName">
-            </div>
+        <br>
+        <div class="form-group row">
+                <div class="form-group col-md-1">
+                </div>
+                <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-secondary" style="width: 100%" name="addprod" id="addprod"><span
+                                class="fas fa-plus-circle">
+                                Adicionar Produto ao Pedido</span></button>
+                </div>
+                <div class="form-group col-md-1">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-secondary" style="width: 100%" name="edit" id="edit"><span
+                                class="fas fa-pen">
+                                Editar Quantidade</span></button>
+                    </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="inputAddress">Endereço:</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Nome da Rua">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputNumber">Número:</label>
-                <input type="text" class="form-control" id="inputNumber">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputCEP">CEP:</label>
-                <input type="text" class="form-control" id="inputCEP" placeholder="000000-000">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputNeighborhood">Bairro:</label>
-                <input type="text" class="form-control" id="inputNeighborhood" placeholder="Ex: Coral">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="inputCity">Cidade:</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="Ex: Lages">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="inputObs">Obs:</label>
-                <input type="text" class="form-control" id="inputObs" placeholder="Digite aqui sua observação">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputDatetime">Data/Hora:</label>
-                <input type="datetime-local" class="form-control" id="inputDatetime">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="inputIDProduct">Produto:</label>
-                <input type="text" class="form-control" id="inputIDProduct" placeholder="Código">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputDesc">Descrição:</label>
-                <input type="text" class="form-control" id="inputDesc">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputPrice">Preço:</label>
-                <input type="text" class="form-control" id="inputPrice" placeholder="R$">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputQtd">Quantidade:</label>
-                <input type="number" class="form-control" id="inputQtd">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-secondary" style="width: 100%"><span class="fas fa-save">
-                        Adicionar</span></button>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <table class="table">
+        <div class="form-group row">
+
+        <div class="col-md-6">
+            <h3>Produtos no Pedido</h3>
+            <table class="table table-scroll" id="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Preço</th>
                         <th scope="col">Imagem</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Unidade</th>
+                        <th scope="col">Quantidade</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Caneta</td>
-                        <td>2.00</td>
-                        <td></td>
-                        <td><i class="fas fa-eye"></i></td>
-                        <td><i class="fas fa-edit"></i></td>
-                        <td><i class="fas fa-trash-alt"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Caneta</td>
-                        <td>2.00</td>
-                        <td></td>
-                        <td><i class="fas fa-eye"></i></td>
-                        <td><i class="fas fa-edit"></i></td>
-                        <td><i class="fas fa-trash-alt"></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Caneta</td>
-                        <td>2.00</td>
-                        <td></td>
-                        <td><i class="fas fa-eye"></i></td>
-                        <td><i class="fas fa-edit"></i></td>
-                        <td><i class="fas fa-trash-alt"></i></td>
-                    </tr>
+                <tbody class="products-in-request">
+
                 </tbody>
             </table>
         </div>
+        </div>
+        <div class="form-group row">
+                <div class="form-group col-md-4">
+                </div>
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-secondary" style="width: 100%" name="createRequestDB"
+                    id="createRequestDB"><span class="fas fa-save">
+                        Finalizar Pedido</span></button>
+            </div>
+        </div>
+        <input type="hidden" class="hidden" id="idprod" name="idprod" />
     </form>
 </div>
+{% elif tipo == 'Edit' %}
+<div class="content">
+        <h2>Pedidos</h2>
+        <form name="pedido" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+                <div class="form-group col-md-3">
+                    <label>Produto:</label>
+                    <select id="produto" name="produto" class="form-control">
+                        <option selected value="">Escolher...</option>
+                        {% if products %}
+                        {% for product in products%}
+                            <option value="{{product[0]}}">{{product[1]}}</option>
+                        {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                        <label>Quantidade:</label>
+
+                    <input type="number" class="form-control" id="quant" name="quant" placeholder="Quantidade">
+                </div>
+            </div>
+            <br>
+                <div class="form-group row">
+                    <div class="form-group col-md-1"></div>
+                    <div class="form-group col-md-2">
+
+                        <button type="submit" class="btn btn-secondary" style="width: 100%" name="addprod" id="addprod"><span
+                                class="fas fa-plus-circle">
+                                Adicionar Produto ao Pedido</span></button>
+                    </div>
+                    <div class="form-group col-md-1"></div>
+                    <div class="form-group col-md-2">
+                            <button type="submit" class="btn btn-secondary" style="width: 100%" name="edit" id="edit"><span
+                                class="fas fa-pen">
+                                Editar Quantidade</span></button>
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                <div class="form-group col-md-6">
+                <h3>Produtos no Pedido</h3>
+                <table class="table table-scroll" id="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Imagem</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Unidade</th>
+                            <th scope="col">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody class="products-in-request">
+                            
+                    </tbody>
+                </table>
+                </div>
+                </div>
+            <div class="form-group row">
+                <div class="form-group col-md-4">
+
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-secondary" style="width: 100%" name="updateRequestDB"
+                        id="updateRequestDB"><span class="fas fa-save">
+                            Atualizar Pedido</span></button>
+                </div>
+            </div>
+            <input type="hidden" class="hidden" id="idprod" name="idprod" />
+        </form>
+    </div>
+{% endif%}
+{% endblock %}
+{% block scripts %}
+<script>
+    var array = {{produtosped|tojson}};
+    table = document.getElementById("table");
+
+    for (var i = 0; i < array.length; i++) {
+        var row = $("<tr>")
+            
+        var col1 = $("<td>"+array[i].id_produto+"</td>")
+        var col2 = $("<td><img max-width='60px' height='60px' src="+array[i].imagem+"></td>")
+        var col3 = $("<td>"+array[i].nome+"</td>")
+        var col4 = $("<td>"+array[i].unidade+"</td>")
+        var col5 = $("<td>"+array[i].quantidade+"</td>")
+        var col6 = $("<td><button type='submit' name='delete' id='delete'><i class='fas fa-trash-alt'></i></button></td>")
+
+        row.append(col1)
+        row.append(col2)
+        row.append(col3)
+        row.append(col4)
+        row.append(col5)
+        row.append(col6)
+
+        $("#table").append(row)
+    }
+    
+    var rIndex, table = document.getElementById("table");
+    
+    function selectedRowToInput()
+    {
+        for(var i = 0; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                rIndex = this.rowIndex;
+                document.getElementById("produto").value = this.cells[0].innerHTML;
+                document.getElementById("quant").value = this.cells[4].innerHTML;
+                document.getElementById("idprod").value = rIndex;
+                console.log(this.cells[0].innerHTML);
+            };
+        }
+    }
+    selectedRowToInput();
+
+</script>
 {% endblock %}
