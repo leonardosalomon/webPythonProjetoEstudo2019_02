@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Produtos no pedido</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+        }
+        ul {
+            padding: 10px 0;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        li:last-child {
+            margin-bottom: 0;
+        }
+        table {
+            width: 100%;
+        }
+        table td,
+        table th {
+            padding: 10px;
+            text-align: left;
+        }
+        table th{
+            background: #e4e4e4;
+        }
+        table td{
+            border-bottom: solid 1px #e4e4e4;
+        }
+        table img{
+            max-width: 60px;
+            max-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>Informações do pedido</h2>
+        <ul>
+            <li><b>Código:</b> {{ ped.id }}</li>
+            <li><b>Código do cliente:</b> {{ ped.id_usuario }}</li>
+            <li><b>Data:</b> {{ ped.data_solicita }}</li>
+            <li><b>Status:</b> {{ ped.status }}</li>
+        </ul>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Produtos do pedido</h2>
+        {% if not products or products=='None' %}
+        <p>O pedido não possui produtos cadastrados.</p>
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Unidade</th>
+                    <th>Quantidade</th>
+                    <th>Quantidade Aprovada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td><img src="{{ product[5] }}"></td>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[3] }}</td>
+                    <td>{{ product[4] }}</td>
+                    <td>{{ product[2] }}</td>
+                    <td>{{ product[6] }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

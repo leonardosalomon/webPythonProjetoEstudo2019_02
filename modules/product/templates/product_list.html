@@ -17,7 +17,6 @@
                 <th scope="col">Imagem</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +26,7 @@
                 <th scope="row">{{ product[0] }}</th>
                 <td>{{ product[1] }}</td>
                 <td>{{ product[2] }}</td>
-                <td><img src="{{ product[4] }}"</td>
-                <td><i class="fas fa-eye"></i></td>
+                <td><img max-width="60px" height="60px"src="{{ product[4] }}"></td>
                 <td>
                     <input type='hidden' name='id' value='{{ product[0] }}'>
                     <a href="{{ url_for('bp_product.product_edit', id=product[0]) }}"><i class="fas fa-edit"></i></a>

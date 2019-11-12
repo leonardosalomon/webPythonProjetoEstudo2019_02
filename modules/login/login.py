@@ -46,6 +46,7 @@ def login():
             session.clear()
             session['usuario'] = usuario.nome
             session['permissao'] = usuario.permissao
+            session['id'] = usuario.id
             return redirect(url_for('bp_home.home'))
         else:
             error = 'Invalid Credentials'

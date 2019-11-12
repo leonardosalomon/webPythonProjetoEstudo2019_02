@@ -12,7 +12,6 @@ body {
 }
 
 body {
-  /*background-image: url(https://w.wallhaven.cc/full/dg/wallhaven-dgkzmj.jpg);*/
   background-size: cover;
   background-position: fill;
 }
@@ -73,7 +72,6 @@ body {
 
 .sidebarMenuInner li span {
   display: block;
-  /*font-size: 14px;*/
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -188,9 +186,18 @@ input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 .form-row button {
   color: white;
+  margin-top: 3%;
 }
 
 .form-row button:hover {
+  color: white;
+}
+
+.form-group button {
+  color: white;
+}
+
+.form-group button:hover {
   color: white;
 }
 
@@ -216,3 +223,29 @@ hr {
   margin-top: 10px;
   margin-right: 50px;
 }
+
+h2{
+  margin-top:0;
+}
+
+.form-group{
+  margin-bottom: 0;
+}
+
+/* .table-scroll{
+  display: table-cell;
+  height: 250px; 
+} */
+
+tr{
+  transition: all .25s ease-in-out;
+}
+tr:hover, tr:active, tr:focus{
+  background-color: #EEE;
+  cursor: pointer;
+}
+
+.fa-trash-alt, .fa-file-contract, .fa-edit{
+  color: black
+}
+
